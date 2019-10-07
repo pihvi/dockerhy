@@ -8,3 +8,11 @@ b62d6d3b8f0e        nginx               "nginx -g 'daemon of…"   35 seconds ag
 d9c89d90a5d8        nginx               "nginx -g 'daemon of…"   2 minutes ago       Exited (0) 2 seconds ago                                       nostalgic_chandrasekhar
 55bcd8dfd483        nginx               "nginx -g 'daemon of…"   3 minutes ago       Exited (0) 3 minutes ago                                       condescending_shannon
 ```
+
+## 1.2
+```
+⋊> ~/o/dockerhy on master ◦ docker images                                                                                                                                                               19:09:57
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+⋊> ~/o/dockerhy on master ◦ docker ps -a                                                                                                                                                                19:10:00
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+```
