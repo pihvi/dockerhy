@@ -34,3 +34,17 @@ You found the correct password. Secret message is:
 "This is the secret message"
 
 ```
+
+## 1.4
+```fish
+⋊> ~/o/dockerhy on master ◦ docker run -d devopsdockeruh/exec_bash_exercise                                                                                                                             20:38:31
+7e91f2bda7f85537e30023a86521f5e5d98e95e299d2d1d8af7d93def46bc814
+⋊> ~/o/dockerhy on master ◦ docker exec -it 7e bash                                                                                                                                                     20:38:36
+root@7e91f2bda7f8:/usr/app# tail -f ./logs.txt
+Mon, 07 Oct 2019 17:38:36 GMT
+Mon, 07 Oct 2019 17:38:39 GMT
+Mon, 07 Oct 2019 17:38:42 GMT
+Mon, 07 Oct 2019 17:38:45 GMT
+Secret message is:
+"Docker is easy"
+```
