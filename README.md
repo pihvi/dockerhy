@@ -48,3 +48,27 @@ Mon, 07 Oct 2019 17:38:45 GMT
 Secret message is:
 "Docker is easy"
 ```
+
+## 1.5
+```fish
+⋊> ~/D/o/dockerhy on master ◦ docker run -it ubuntu:16.04 sh -c 'apt-get update; apt-get install curl -y; echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;'
+Get:1 http://security.ubuntu.com/ubuntu xenial-security InRelease [109 kB]
+... a lot of apt output removed
+Setting up curl (7.47.0-1ubuntu2.14) ...
+Processing triggers for libc-bin (2.23-0ubuntu11) ...
+Processing triggers for ca-certificates (20170717~16.04.2) ...
+Updating certificates in /etc/ssl/certs...
+148 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+Input website:
+helsinki.fi
+Searching..
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>301 Moved Permanently</title>
+</head><body>
+<h1>Moved Permanently</h1>
+<p>The document has moved <a href="http://www.helsinki.fi/">here</a>.</p>
+</body></html>
+```
