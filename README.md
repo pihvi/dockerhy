@@ -72,3 +72,24 @@ Searching..
 <p>The document has moved <a href="http://www.helsinki.fi/">here</a>.</p>
 </body></html>
 ```
+
+## 1.6
+```fish
+⋊> ~/D/o/dockerhy on master ↑ cat ex1.6/Dockerfile                                                                                                                                                      13:00:38
+FROM devopsdockeruh/overwrite_cmd_exercise
+CMD ["-c"]
+⋊> ~/D/o/dockerhy on master ↑ docker build -t docker-clock ex1.6/                                                                                                                                       13:00:54
+Sending build context to Docker daemon  2.048kB
+Step 1/2 : FROM devopsdockeruh/overwrite_cmd_exercise
+ ---> 0f7f459b76c9
+Step 2/2 : CMD ["-c"]
+ ---> Using cache
+ ---> 70b9200289fb
+Successfully built 70b9200289fb
+Successfully tagged docker-clock:latest
+⋊> ~/D/o/dockerhy on master ↑ docker run docker-clock                                                                                                                                                   13:01:01
+1
+2
+3
+```
+
