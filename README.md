@@ -209,7 +209,9 @@ found 273 vulnerabilities (1 moderate, 272 high)
 
 Browserslist: caniuse-lite is outdated. Please run next command `npm update caniuse-lite browserslist`
 Started on port 8000
-^C⏎                                                                                                    ⋊> ~/D/o/dockerhy on master ⨯ cat ex1.11/Dockerfile                                            16:53:48
+^C⏎                                                                                                    
+
+⋊> ~/D/o/dockerhy on master ⨯ cat ex1.11/Dockerfile                                            16:53:48
 FROM ubuntu:16.04
 
 WORKDIR /appsi
