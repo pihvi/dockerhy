@@ -219,3 +219,54 @@ RUN node -v && npm -v
 
 CMD cd backend-example-docker && npm install && npm start
 ```
+
+## 1.12
+```fish
+⋊> ~/D/o/dockerhy on master ⨯ docker build ex1.11/                                             17:23:06
+...
+Successfully built 88f7ea6fc9c9
+
+⋊> ~/D/o/dockerhy on master ⨯ docker run -it -p 8000:8000 -v "$PWD"/ex1.11/backend-example-docker:/appsi/backend-example-docker 88
+...
+Started on port 8000
+^C⏎                                                                                                    
+
+⋊> ~/D/o/dockerhy on master ⨯ cat ex1.11/Dockerfile                                            17:24:49
+FROM ubuntu:16.04
+
+WORKDIR /appsi
+COPY backend-example-docker backend-example-docker
+RUN apt update && apt install -y curl && curl -sL https://deb.nodesource.com/setup_10.x | bash && apt install -y nodejs
+RUN node -v && npm -v
+
+ENV FRONT_URL=http://localhost:5000
+CMD cd backend-example-docker && npm install && npm start
+
+⋊> ~/D/o/dockerhy on master ⨯ docker build ex1.10/                                                                                                 ...
+Successfully built 3aba4dd08721
+⋊> ~/D/o/dockerhy on master ⨯ docker run -it -p 5000:5000 3a                                   17:20:20
+...
+   ┌────────────────────────────────────────────────┐
+   │                                                │
+   │   Serving!                                     │
+   │                                                │
+   │   - Local:            http://localhost:5000    │
+   │   - On Your Network:  http://172.17.0.3:5000   │
+   │                                                │
+   └────────────────────────────────────────────────┘
+^C
+INFO: Gracefully shutting down. Please wait...
+
+⋊> ~/D/o/dockerhy on master ⨯ cat ex1.10/Dockerfile                                            17:24:51
+FROM ubuntu:16.04
+
+WORKDIR /appsi
+COPY frontend-example-docker frontend-example-docker
+RUN apt update && apt install -y curl && curl -sL https://deb.nodesource.com/setup_10.x | bash && apt install -y nodejs
+RUN node -v && npm -v
+
+ENV API_URL=http://localhost:8000
+RUN cd frontend-example-docker && npm install
+
+CMD cd frontend-example-docker && npm start
+```
