@@ -272,3 +272,15 @@ RUN cd frontend-example-docker && npm install
 
 CMD cd frontend-example-docker && npm start
 ```
+
+## 1.13
+```fish
+⋊> ~/D/o/dockerhy on master ↑ cat ex1.13/Dockerfile                                            18:13:55
+FROM openjdk:8-slim
+
+WORKDIR /appsi
+COPY spring-example-project .
+RUN ./mvnw package
+
+CMD java -jar ./target/docker-example-1.1.3.jar
+```
