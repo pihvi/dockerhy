@@ -123,3 +123,32 @@ Searching..
 <p>The document has moved <a href="http://www.helsinki.fi/">here</a>.</p>
 </body></html>
 ```
+
+## 1.8
+```fish
+⋊> ~/D/o/dockerhy on master ◦ docker run devopsdockeruh/first_volume_exercise                  14:50:59
+(node:1) ExperimentalWarning: The fs.promises API is experimental
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+^CClosing file
+⋊> ~/D/o/dockerhy on master ◦ docker ps -a                                                     14:51:20
+CONTAINER ID        IMAGE                                  COMMAND             CREATED             STATUS                     PORTS               NAMES
+f22c7b173cc5        devopsdockeruh/first_volume_exercise   "node index"        9 seconds ago       Exited (0) 4 seconds ago                       amazing_tereshkova
+⋊> ~/D/o/dockerhy on master ◦ docker cp "f22://usr/app/" .                                     14:51:34
+⋊> ~/D/o/dockerhy on master ↑ docker run -v /Users/amattila/opiskelu/dockerhy/app:/usr/app devopsdockeruh/first_volume_exercise                                                                         14:54:07
+(node:1) ExperimentalWarning: The fs.promises API is experimental
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+^CClosing file
+⋊> ~/D/o/dockerhy on master ⨯ cat app/logs.txt                                                                                                                                                          14:54:57
+Tue, 08 Oct 2019 11:54:36 GMT
+Tue, 08 Oct 2019 11:54:39 GMT
+Tue, 08 Oct 2019 11:54:42 GMT
+Tue, 08 Oct 2019 11:54:45 GMT
+Secret message is:
+"Volume bind mount is easy"
+Tue, 08 Oct 2019 11:54:51 GMT```
