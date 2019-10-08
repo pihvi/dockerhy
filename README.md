@@ -151,4 +151,21 @@ Tue, 08 Oct 2019 11:54:42 GMT
 Tue, 08 Oct 2019 11:54:45 GMT
 Secret message is:
 "Volume bind mount is easy"
-Tue, 08 Oct 2019 11:54:51 GMT```
+Tue, 08 Oct 2019 11:54:51 GMT
+```
+
+## 1.9
+```fish
+⋊> ~/D/o/dockerhy on master ◦ docker run -p 7000:80 devopsdockeruh/ports_exercise                                                                                                 15:17:26
+...
+Digest: sha256:2ff93dd0c744aee7a8f00bc9558d09fd6279493da0d01769fe600f78fb4593f2
+Status: Downloaded newer image for devopsdockeruh/ports_exercise:latest
+
+> ports_exercise@1.0.0 start /usr/app
+> node index.js
+
+Listening on port 80, this means inside of the container. Use -p to map the port to a port of your local machine.```
+
+⋊> ~/D/o/dockerhy on master ◦ curl localhost:7000                                              15:17:42
+Ports configured correctly!!⏎
+```
