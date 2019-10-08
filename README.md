@@ -32,7 +32,6 @@ Status: Downloaded newer image for devopsdockeruh/pull_exercise:latest
 Give me the password: basics
 You found the correct password. Secret message is:
 "This is the secret message"
-
 ```
 
 ## 1.4
@@ -283,4 +282,19 @@ COPY spring-example-project .
 RUN ./mvnw package
 
 CMD java -jar ./target/docker-example-1.1.3.jar
+```
+
+## 1.14
+```fish
+⋊> ~/D/o/dockerhy on master ◦ cat ex1.14/Dockerfile                                            18:30:39
+FROM ruby:2.6.0
+
+WORKDIR /appsi
+COPY rails-example-project .
+RUN apt-get update && apt-get install -y nodejs
+RUN gem install bundler
+RUN bundle install
+RUN rails db:migrate
+
+CMD rails s
 ```
