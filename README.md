@@ -93,3 +93,33 @@ Successfully tagged docker-clock:latest
 3
 ```
 
+## 1.7
+```fish
+⋊> ~/D/o/dockerhy on master ⨯ cat ex1.7/Dockerfile                                                                                                                                                      13:12:52
+FROM ubuntu:16.04
+RUN apt-get update && apt-get install -y curl
+CMD echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;
+⋊> ~/D/o/dockerhy on master ⨯ docker build -t curler ex1.7/                                                                                                                                             13:13:17
+Sending build context to Docker daemon  2.048kB
+Step 1/3 : FROM ubuntu:16.04
+ ---> 657d80a6401d
+Step 2/3 : RUN apt-get update && apt-get install -y curl
+ ---> Using cache
+ ---> 4308a334068e
+Step 3/3 : CMD echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;
+ ---> Using cache
+ ---> f4d6ba024ecc
+Successfully built f4d6ba024ecc
+Successfully tagged curler:latest
+⋊> ~/D/o/dockerhy on master ⨯ docker run -it curler                                                                                                                                                     13:13:21
+Input website:
+helsinki.fi
+Searching..
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>301 Moved Permanently</title>
+</head><body>
+<h1>Moved Permanently</h1>
+<p>The document has moved <a href="http://www.helsinki.fi/">here</a>.</p>
+</body></html>
+```
