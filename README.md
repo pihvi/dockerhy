@@ -169,3 +169,27 @@ Listening on port 80, this means inside of the container. Use -p to map the port
 ⋊> ~/D/o/dockerhy on master ◦ curl localhost:7000                                              15:17:42
 Ports configured correctly!!⏎
 ```
+
+## 1.10
+```fish
+⋊> ~/D/o/dockerhy on master ↑ docker build ex1.10/                                             15:46:48
+...
+Successfully built 4f8ab8e5e96d
+⋊> ~/D/o/dockerhy on master ↑ docker run -p 5000:5000 4f                                       15:47:01
+
+> frontend-example-docker@1.0.0 start /appsi/frontend-example-docker
+> webpack --mode production && serve -s -l 5000 dist
+...
+INFO: Accepting connections at http://localhost:5000```
+
+⋊> ~/D/o/dockerhy on master ↑ cat ex1.10/Dockerfile                                            15:47:50
+FROM ubuntu:16.04
+
+WORKDIR /appsi
+COPY frontend-example-docker frontend-example-docker
+RUN apt update && apt install -y curl && curl -sL https://deb.nodesource.com/setup_10.x | bash && apt install -y nodejs
+RUN node -v && npm -v
+RUN cd frontend-example-docker && npm install
+
+CMD cd frontend-example-docker && npm start
+```
