@@ -193,3 +193,29 @@ RUN cd frontend-example-docker && npm install
 
 CMD cd frontend-example-docker && npm start
 ```
+
+## 1.11
+```fish
+⋊> ~/D/o/dockerhy on master ⨯ docker run -it -p 8000:8000 -v "$PWD"/ex1.11/backend-example-docker:/appsi/backend-example-docker 0b
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.4 (node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.4: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
+audited 5317 packages in 9.265s
+found 273 vulnerabilities (1 moderate, 272 high)
+  run `npm audit fix` to fix them, or `npm audit` for details
+
+> backend-example-docker@1.0.0 start /appsi/backend-example-docker
+> cross-env NODE_ENV=production node index.js
+
+Browserslist: caniuse-lite is outdated. Please run next command `npm update caniuse-lite browserslist`
+Started on port 8000
+^C⏎                                                                                                    ⋊> ~/D/o/dockerhy on master ⨯ cat ex1.11/Dockerfile                                            16:53:48
+FROM ubuntu:16.04
+
+WORKDIR /appsi
+COPY backend-example-docker backend-example-docker
+RUN apt update && apt install -y curl && curl -sL https://deb.nodesource.com/setup_10.x | bash && apt install -y nodejs
+RUN node -v && npm -v
+
+CMD cd backend-example-docker && npm install && npm start
+```
