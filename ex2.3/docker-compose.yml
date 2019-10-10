@@ -1,0 +1,11 @@
+version: '3.5'
+
+services:
+  frontti:
+    ports:
+      - 5000:5000
+    build: ../ex1.10
+  backki:
+    ports:
+      - 8000:8000
+    build: ../ex1.11
