@@ -16,3 +16,31 @@ services:
       - ./logs.txt:/usr/app/logs.txt
     container_name: ex2.1
 ```
+
+## 2.2
+```fish
+⋊> ~/dockerhy on master ◦ cat ex2.2/docker-compose.yml                                                                                                                                                  21:36:34
+version: '3.5'
+
+services:
+  portit:
+    image: devopsdockeruh/ports_exercise
+    ports:
+      - 8000:80
+```
+
+## 2.3
+```fish
+⋊> ~/dockerhy on master ◦ cat ex2.3/docker-compose.yml                                                                                                                                                  21:36:41
+version: '3.5'
+
+services:
+  frontti:
+    ports:
+      - 5000:5000
+    build: ../ex1.10
+  backki:
+    ports:
+      - 8000:8000
+    build: ../ex1.11
+```
