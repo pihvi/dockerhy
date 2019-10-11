@@ -72,3 +72,36 @@ services:
     ports:
       - 6379:6379
 ```
+
+## 2.6
+```fish
+⋊> ~/D/o/dockerhy on master ⨯ cat ex2.6/docker-compose.yml                                     16:01:23
+version: '3.5'
+
+services:
+  frontti:
+    ports:
+      - 5000:5000
+    build: ../ex1.10
+  backki:
+    ports:
+      - 8000:8000
+    build: ../ex1.11
+    environment:
+      - REDIS=redis
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=huomentapaivaa
+      - DB_NAME=postgres
+      - DB_HOST=possulainen
+    depends_on:
+      - possulainen
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+  possulainen:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: huomentapaivaa
+```
