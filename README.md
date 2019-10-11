@@ -44,3 +44,9 @@ services:
       - 8000:8000
     build: ../ex1.11
 ```
+
+## 2.4
+```fish
+⋊> ~/o/dockerhy on master ⨯ cat ex2.4/start_scaled.sh                                                                                                                                                   14:30:23
+docker-compose -f scaling-exercise/docker-compose.yml up --scale compute=2
+```
