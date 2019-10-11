@@ -105,3 +105,49 @@ services:
     environment:
       POSTGRES_PASSWORD: huomentapaivaa
 ```
+
+## 2.8
+```fish
+⋊> ~/o/dockerhy on master ⨯ cat ex2.8/docker-compose.yml                                                                                                                                                16:37:36
+version: '3.5'
+
+services:
+  frontti:
+    ports:
+      - 5000:5000
+    build: ../ex1.10
+  backki:
+    ports:
+      - 8000:8000
+    build: ../ex1.11
+    environment:
+      - REDIS=redis
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=huomentapaivaa
+      - DB_NAME=postgres
+      - DB_HOST=possulainen
+    depends_on:
+      - possulainen
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+  possulainen:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: huomentapaivaa
+  kinkku:
+    depends_on:
+      - frontti
+      - backki
+    image: nginx
+    restart: always
+    ports:
+      - 80:80
+    environment:
+      - NGINX_HOST=localhost
+      - NGINX_PORT=80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+```
