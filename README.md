@@ -50,3 +50,25 @@ services:
 ⋊> ~/o/dockerhy on master ⨯ cat ex2.4/start_scaled.sh                                                                                                                                                   14:30:23
 docker-compose -f scaling-exercise/docker-compose.yml up --scale compute=2
 ```
+
+## 2.5
+```fish
+⋊> ~/D/o/dockerhy on master ⨯ cat ex2.5/docker-compose.yml                                     14:56:54
+version: '3.5'
+
+services:
+  frontti:
+    ports:
+      - 5000:5000
+    build: ../ex1.10
+  backki:
+    ports:
+      - 8000:8000
+    build: ../ex1.11
+    environment:
+      - REDIS=redis
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+```
