@@ -186,3 +186,81 @@ services:
     volumes:
       - ./database:/var/lib/postgresql/data
 ```
+
+## 2.10
+
+- Removed ENV API_URL from front's Dockerfile and brought that config to compose file pointing to http://localhost:80/api
+
+docker-compose.yml:
+```fish
+version: '3.5'
+
+services:
+  frontti:
+    ports:
+      - 5000:5000
+    build: ../ex1.10
+    environment:
+      - API_URL=http://localhost:80/api
+  backki:
+    ports:
+      - 8000:8000
+    build: ../ex1.11
+    environment:
+      - REDIS=redis
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=huomentapaivaa
+      - DB_NAME=postgres
+      - DB_HOST=possulainen
+    depends_on:
+      - possulainen
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+  possulainen:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: huomentapaivaa
+  kinkku:
+    depends_on:
+      - frontti
+      - backki
+    image: nginx
+    restart: always
+    ports:
+      - 80:80
+    environment:
+      - NGINX_HOST=localhost
+      - NGINX_PORT=80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+```
+
+front Dockerfile:
+```fish
+FROM ubuntu:16.04
+
+WORKDIR /appsi
+COPY frontend-example-docker frontend-example-docker
+RUN apt update && apt install -y curl && curl -sL https://deb.nodesource.com/setup_10.x | bash && apt install -y nodejs
+RUN node -v && npm -v
+
+RUN cd frontend-example-docker && npm install
+
+CMD cd frontend-example-docker && npm start
+```
+
+back Dockerfile:
+```fish
+FROM ubuntu:16.04
+
+WORKDIR /appsi
+COPY backend-example-docker backend-example-docker
+RUN apt update && apt install -y curl && curl -sL https://deb.nodesource.com/setup_10.x | bash && apt install -y nodejs
+RUN node -v && npm -v
+
+ENV FRONT_URL=http://localhost:5000
+CMD cd backend-example-docker && npm install && npm start
+```
