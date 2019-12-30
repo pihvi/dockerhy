@@ -46,4 +46,37 @@ f5bd43f8fb37        11 minutes ago      /bin/sh -c curl -sL https://deb.nodesour
 <missing>           3 months ago        /bin/sh -c set -xe   && echo '#!/bin/sh' > /…   745B
 <missing>           3 months ago        /bin/sh -c rm -rf /var/lib/apt/lists/*          0B
 <missing>           3 months ago        /bin/sh -c #(nop) ADD file:a5b5bea2fa5358461…   121MB
+⋊> ~/D/o/dockerhy on master ↑
+```
+
+### after
+
+```fish
+⋊> ~/D/o/dockerhy on master ⨯ docker images | grep i3                                                                                                                                                   14:24:45
+frontti3                                                       latest              69a825fabdfe        5 hours ago         426MB
+backki3                                                        latest              76b41b45b3f9        5 hours ago         271MB
+⋊> ~/D/o/dockerhy on master ⨯ docker history backki3                                                                                                                                                    19:28:15
+IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+76b41b45b3f9        5 hours ago         /bin/sh -c #(nop)  CMD ["/bin/sh" "-c" "cd b…   0B
+8635a75c3dfe        5 hours ago         /bin/sh -c #(nop)  ENV FRONT_URL=http://loca…   0B
+8dd36e577f18        5 hours ago         /bin/sh -c apt update && apt install -y curl…   150MB
+546f866d3101        5 hours ago         /bin/sh -c #(nop) COPY dir:dafb132035c9f6056…   219kB
+04669079ab1b        2 months ago        /bin/sh -c #(nop) WORKDIR /appsi                0B
+657d80a6401d        3 months ago        /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B
+<missing>           3 months ago        /bin/sh -c mkdir -p /run/systemd && echo 'do…   7B
+<missing>           3 months ago        /bin/sh -c set -xe   && echo '#!/bin/sh' > /…   745B
+<missing>           3 months ago        /bin/sh -c rm -rf /var/lib/apt/lists/*          0B
+<missing>           3 months ago        /bin/sh -c #(nop) ADD file:a5b5bea2fa5358461…   121MB
+⋊> ~/D/o/dockerhy on master ⨯ docker history frontti3                                                                                                                                                   19:28:27
+IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+69a825fabdfe        5 hours ago         /bin/sh -c #(nop)  CMD ["/bin/sh" "-c" "cd f…   0B
+99a0c12189e0        5 hours ago         /bin/sh -c cd frontend-example-docker && npm…   155MB
+e9c32193418b        5 hours ago         /bin/sh -c apt update && apt install -y curl…   150MB
+59169cf327b1        6 hours ago         /bin/sh -c #(nop) COPY dir:b9883e18c4b1b2749…   386kB
+04669079ab1b        2 months ago        /bin/sh -c #(nop) WORKDIR /appsi                0B
+657d80a6401d        3 months ago        /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B
+<missing>           3 months ago        /bin/sh -c mkdir -p /run/systemd && echo 'do…   7B
+<missing>           3 months ago        /bin/sh -c set -xe   && echo '#!/bin/sh' > /…   745B
+<missing>           3 months ago        /bin/sh -c rm -rf /var/lib/apt/lists/*          0B
+<missing>           3 months ago        /bin/sh -c #(nop) ADD file:a5b5bea2fa5358461…   121MB
 ⋊> ~/D/o/dockerhy on master ↑```
