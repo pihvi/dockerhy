@@ -8,6 +8,37 @@
 
 ## 3.1
 
+### Docker files
+
+```
+⋊> ~/o/dockerhy on master ⨯ cat ex3.1/Dockerfile-back                                                                                                                                                   11:13:42
+FROM ubuntu:16.04
+
+WORKDIR /appsi
+COPY backend-example-docker-master backend-example-docker
+
+RUN apt update && apt install -y curl && curl -sL https://deb.nodesource.com/setup_10.x | bash && apt install -y nodejs && \
+apt-get purge -y --auto-remove curl && \
+rm -rf /var/lib/apt/lists/*
+
+ENV FRONT_URL=http://localhost:5000
+CMD cd backend-example-docker && npm install && npm start
+
+⋊> ~/o/dockerhy on master ⨯ cat ex3.1/Dockerfile-front                                                                                                                                                  11:13:49
+FROM ubuntu:16.04
+
+WORKDIR /appsi
+COPY frontend-example-docker-master frontend-example-docker
+
+RUN apt update && apt install -y curl && curl -sL https://deb.nodesource.com/setup_10.x | bash && apt install -y nodejs && \
+apt-get purge -y --auto-remove curl && \
+rm -rf /var/lib/apt/lists/*
+
+RUN cd frontend-example-docker && npm install
+
+CMD cd frontend-example-docker && npm start
+```
+
 ### before
 
 ```fish
@@ -85,6 +116,13 @@ e9c32193418b        5 hours ago         /bin/sh -c apt update && apt install -y 
 ## 3.2.
 
 ```
+⋊> ~/o/dockerhy on master ◦ cat ex3.2/Dockerfile                                                                                                                                                        11:10:59
+FROM taskinen/yle-dl
+
+RUN pip uninstall -y youtube_dl pip && rm -rf /var/cache/apk/*
+
+CMD ["https://areena.yle.fi/1-50393277"]
+
 ⋊> ~/o/dockerhy on master ⨯ docker build ex3.2                                                                                                                                                          10:28:33
 Sending build context to Docker daemon  2.048kB
 Step 1/3 : FROM taskinen/yle-dl
