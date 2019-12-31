@@ -1,0 +1,11 @@
+FROM node
+
+WORKDIR /appsi
+COPY backend-example-docker-master backend-example-docker
+
+RUN useradd -m app && chown -R app /appsi
+
+USER app
+
+ENV FRONT_URL=http://localhost:5000
+CMD cd backend-example-docker && npm install && npm start

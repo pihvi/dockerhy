@@ -199,3 +199,54 @@ USER app
 ENV FRONT_URL=http://localhost:5000
 CMD cd backend-example-docker && npm install && npm start
 ```
+
+## 3.4.
+
+### before
+
+```fish
+⋊> ~/D/o/dockerhy on master ↑ docker images | grep i3                                                                                                                                                   14:13:27
+backki3                                                        latest              ac20af00dd2a        11 minutes ago      300MB
+frontti3                                                       latest              bef9a9a2f9a9        31 minutes ago      455MB
+```
+
+### after
+
+```fish
+⋊> ~/o/dockerhy on master ⨯ docker images | grep 3.4                                                                                                                                                    11:52:14
+back3.4                                                        latest              24cd101bb179        About a minute ago   909MB
+front3.4                                                       latest              fdfd3cfd5d9d        3 minutes ago        909MB
+```
+
+### Docker files
+
+```
+⋊> ~/o/dockerhy on master ⨯ cat ex3.4/Dockerfile-back                                                                                                                                                   11:52:30
+FROM node
+
+WORKDIR /appsi
+COPY backend-example-docker-master backend-example-docker
+
+RUN useradd -m app && chown -R app /appsi
+
+USER app
+
+ENV FRONT_URL=http://localhost:5000
+CMD cd backend-example-docker && npm install && npm start
+
+⋊> ~/o/dockerhy on master ⨯ cat ex3.4/Dockerfile-front                                                                                                                                                  11:56:14
+FROM node
+
+WORKDIR /appsi
+COPY frontend-example-docker-master frontend-example-docker
+
+RUN useradd -m app && chown -R app /appsi
+
+USER app
+
+CMD cd frontend-example-docker && npm install && npm start
+```
+
+### result
+
+Docker file is simpler, but just using "FROM node" increases the image size
