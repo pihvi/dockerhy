@@ -121,3 +121,43 @@ CMD ["https://areena.yle.fi/1-50393277"]
 ⋊> ~/o/dockerhy on master ⨯ ls *.mkv                                                                                                                                                                    10:30:18
 Strömsö klipit: Joulukuusenpallot kirjan sivuista-2019-12-18T11:59.mkv
 ```
+
+## 3.3.
+
+```
+⋊> ~/o/dockerhy on master ⨯ docker build -f ex3.3/Dockerfile-front -t front3.3 ex3.1/                                                                                                                   10:52:38
+...
+⋊> ~/o/dockerhy on master ⨯ docker build -f ex3.3/Dockerfile-back -t back3.3 ex3.1/
+...
+
+⋊> ~/o/dockerhy on master ⨯ cat ex3.3/Dockerfile-front                                                                                                                                                  11:01:18
+FROM ubuntu:16.04
+
+WORKDIR /appsi
+COPY frontend-example-docker-master frontend-example-docker
+
+RUN apt update && apt install -y curl && curl -sL https://deb.nodesource.com/setup_10.x | bash && apt install -y nodejs && \
+apt-get purge -y --auto-remove curl && \
+rm -rf /var/lib/apt/lists/* && \
+useradd -m app && chown -R app /appsi
+
+USER app
+
+CMD cd frontend-example-docker && npm install && npm start
+
+⋊> ~/o/dockerhy on master ⨯ cat ex3.3/Dockerfile-back                                                                                                                                                   11:01:26
+FROM ubuntu:16.04
+
+WORKDIR /appsi
+COPY backend-example-docker-master backend-example-docker
+
+RUN apt update && apt install -y curl && curl -sL https://deb.nodesource.com/setup_10.x | bash && apt install -y nodejs && \
+apt-get purge -y --auto-remove curl && \
+rm -rf /var/lib/apt/lists/* && \
+useradd -m app && chown -R app /appsi
+
+USER app
+
+ENV FRONT_URL=http://localhost:5000
+CMD cd backend-example-docker && npm install && npm start
+```
