@@ -79,4 +79,45 @@ e9c32193418b        5 hours ago         /bin/sh -c apt update && apt install -y 
 <missing>           3 months ago        /bin/sh -c set -xe   && echo '#!/bin/sh' > /…   745B
 <missing>           3 months ago        /bin/sh -c rm -rf /var/lib/apt/lists/*          0B
 <missing>           3 months ago        /bin/sh -c #(nop) ADD file:a5b5bea2fa5358461…   121MB
-⋊> ~/D/o/dockerhy on master ↑```
+⋊> ~/D/o/dockerhy on master ↑
+```
+
+## 3.2.
+
+```
+⋊> ~/o/dockerhy on master ⨯ docker build ex3.2                                                                                                                                                          10:28:33
+Sending build context to Docker daemon  2.048kB
+Step 1/3 : FROM taskinen/yle-dl
+ ---> b97796e41c16
+Step 2/3 : RUN pip uninstall -y youtube_dl pip && rm -rf /var/cache/apk/*
+ ---> Running in f73ca278378a
+DEPRECATION: Python 2.7 will reach the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 won't be maintained after that date. A future version of pip will drop support for Python 2.7. More details about Python 2 support in pip, can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support
+Uninstalling pip-19.2.1:
+  Successfully uninstalled pip-19.2.1
+Uninstalling youtube-dl-2019.7.30:
+  Successfully uninstalled youtube-dl-2019.7.30
+Removing intermediate container f73ca278378a
+ ---> 97a0d6eae0bc
+Step 3/3 : CMD ["https://areena.yle.fi/1-50393277"]
+ ---> Running in a035216383be
+Removing intermediate container a035216383be
+ ---> e6888c9bd097
+Successfully built e6888c9bd097
+
+⋊> ~/o/dockerhy on master ⨯ docker run -it -v /Users/amattila/opiskelu/dockerhy:/out e6888c9bd097                                                                                                       10:28:54
+yle-dl 20190614: Download media files from Yle Areena and Elävä Arkisto
+Copyright (C) 2009-2019 Antti Ajanki <antti.ajanki@iki.fi>, license: GPLv3
+
+Output file: Strömsö klipit: Joulukuusenpallot kirjan sivuista-2019-12-18T11:59.mkv
+frame= 5892 fps=212 q=-1.0 Lsize=  117791kB time=00:03:55.70 bitrate=4093.8kbits/s speed=8.48x
+Stream saved to Strömsö klipit: Joulukuusenpallot kirjan sivuista-2019-12-18T11:59.mkv
+⋊> ~/o/dockerhy on master ⨯ cat ex3.2/Dockerfile                                                                                                                                                        10:29:29
+FROM taskinen/yle-dl
+
+RUN pip uninstall -y youtube_dl pip && rm -rf /var/cache/apk/*
+
+CMD ["https://areena.yle.fi/1-50393277"]
+
+⋊> ~/o/dockerhy on master ⨯ ls *.mkv                                                                                                                                                                    10:30:18
+Strömsö klipit: Joulukuusenpallot kirjan sivuista-2019-12-18T11:59.mkv
+```
