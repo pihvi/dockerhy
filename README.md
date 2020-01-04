@@ -250,3 +250,45 @@ CMD cd frontend-example-docker && npm install && npm start
 ### result
 
 Docker file is simpler, but just using "FROM node" increases the image size
+
+## 3.5.
+
+### build
+
+```fish
+⋊> ~/o/dockerhy on master ⨯ docker build -f ex3.5/Dockerfile -t front3.5 ex3.1/                                                                                                                         18:11:25
+Sending build context to Docker daemon  654.4kB
+Step 1/7 : FROM node as build-stage
+...
+```
+
+### run
+
+```fish
+⋊> ~/o/dockerhy on master ⨯ docker run -itp 5000:8043 front3.5                                                                                                                                          18:14:21
+2020/01/04 16:14:26 Listening at 0.0.0.0:8043 /...
+```
+
+### size
+
+```fish
+⋊> ~/o/dockerhy on master ⨯ docker images | grep 3.5                                                                                                                                                    18:14:47
+front3.5                                                       latest              58886894326e        2 minutes ago       10.3MB
+```
+
+### Dockerfile
+
+```fish
+⋊> ~/o/dockerhy on master ⨯ cat ex3.5/Dockerfile                                                                                                                                                        18:14:58
+FROM node as build-stage
+WORKDIR /appsi
+COPY frontend-example-docker-master frontend-example-docker
+RUN useradd -m app && chown -R app /appsi && cd frontend-example-docker && npm install && npm run build
+
+
+FROM pierrezemb/gostatic
+
+COPY --from=build-stage /appsi/frontend-example-docker/dist/ /srv/http/
+
+CMD goStatic
+```
