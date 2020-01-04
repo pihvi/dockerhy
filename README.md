@@ -292,3 +292,34 @@ COPY --from=build-stage /appsi/frontend-example-docker/dist/ /srv/http/
 
 CMD goStatic
 ```
+
+## 3.6
+
+### before
+
+```fish
+⋊> ~/o/dockerhy on master ⨯ cat ex1.13/Dockerfile                                                                                                                                                       00:57:04
+FROM openjdk:8-slim
+
+WORKDIR /appsi
+COPY spring-example-project .
+RUN ./mvnw package
+
+CMD java -jar ./target/docker-example-1.1.3.jar
+```
+
+### after
+
+```fish
+FROM openjdk:8-slim as build
+
+WORKDIR /appsi
+COPY spring-example-project .
+RUN ./mvnw package
+
+FROM openjdk:8-jre-slim-buster
+COPY --from=build /appsi/target/docker-example-1.1.3.jar .
+RUN adduser --disabled-password appsi
+USER appsi
+CMD java -jar docker-example-1.1.3.jar
+```
