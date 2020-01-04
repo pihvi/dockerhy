@@ -323,3 +323,6 @@ RUN adduser --disabled-password appsi
 USER appsi
 CMD java -jar docker-example-1.1.3.jar
 ```
+
+## 3.7
+[Why and when to use Kubernetes](ex3.7/kube.md)

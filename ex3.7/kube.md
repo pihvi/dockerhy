@@ -1,0 +1,7 @@
+# Why and when to use Kubernetes
+
+Kubernetes is great at running containers. If your development flow already uses containers, Kubernetes can be a great way to run and manage them. Often Docker can simplify development by providing stable and repeatable environment for complex project setup. Kubernetes enables running these containers in production. This means the setup you got working on development environment most probably will run the same on the cluster. This minimizes risk of deployment and makes it also simpler. Kubernetes is also very popular nowadays and you can find many managed cloud services providing Kubernetes clusters. This can further help and reduce costs of development when “someone else” is taking care of the Kubernetes cluster. You can just focus on deploying the containers.
+
+Another thing Kubernetes excels at is load distribution and resource utilization. So if you have your own hardware cluster and many applications running on it, Kubernetes can help you deploy them and distribute load and resources to the apps that require it. This can also help you reduce costs by utilizing the hardware better.
+
+There are also higher level of managed services like Heroku or App Engine that can run your application and take care of all scaling needs and kernel security updates. So there is a sweet spot for Kubernetes, but it also requires upkeeping and monitoring. So even when Kubernetes is often great option, total costs and complexity for a project might be better off with a higher level of managed services.
