@@ -21,7 +21,9 @@ job "dockerhy" {
         memory = 256 # 256MB
         network {
           mbits = 10
-          port  "http"  {}
+          port  "http"  {
+            static = "80"
+          }
         }
       }
       service {
