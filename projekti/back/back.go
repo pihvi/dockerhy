@@ -12,7 +12,9 @@ func response(rw http.ResponseWriter, request *http.Request) {
 		a = rand.Int() / rand.Int()
 	}
 	println(a)
-	rw.Write([]byte("Hello world."))
+	request.ParseForm()
+	x := request.Form.Get("name")
+	rw.Write([]byte("Hello " + x))
 }
 
 func main() {
