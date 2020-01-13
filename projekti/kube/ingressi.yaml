@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/backends: '{"k8s-be-31155--0e952fec69517dcc":"HEALTHY","k8s-be-31346--0e952fec69517dcc":"HEALTHY"}'
+    ingress.kubernetes.io/forwarding-rule: k8s-fw-default-ingressi--0e952fec69517dcc
+    ingress.kubernetes.io/target-proxy: k8s-tp-default-ingressi--0e952fec69517dcc
+    ingress.kubernetes.io/url-map: k8s-um-default-ingressi--0e952fec69517dcc
+  creationTimestamp: "2020-01-12T23:15:32Z"
+  generation: 1
+  name: ingressi
+  namespace: default
+  resourceVersion: "7336"
+  selfLink: /apis/extensions/v1beta1/namespaces/default/ingresses/ingressi
+  uid: 6e0f1599-3591-11ea-8e55-42010aa60fc8
+spec:
+  backend:
+    serviceName: front-m68f4
+    servicePort: 80
+  rules:
+    - http:
+        paths:
+          - backend:
+              serviceName: back-67bnc
+              servicePort: 80
+            path: /back
+status:
+  loadBalancer:
+    ingress:
+      - ip: 34.107.201.241

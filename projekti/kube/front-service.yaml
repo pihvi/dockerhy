@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2020-01-12T23:15:01Z"
+  generateName: front-
+  labels:
+    app: front
+  name: front-m68f4
+  namespace: default
+  resourceVersion: "6303"
+  selfLink: /api/v1/namespaces/default/services/front-m68f4
+  uid: 5b8ec51a-3591-11ea-8e55-42010aa60fc8
+spec:
+  clusterIP: 10.0.25.107
+  externalTrafficPolicy: Cluster
+  ports:
+    - nodePort: 31155
+      port: 80
+      protocol: TCP
+      targetPort: 8043
+  selector:
+    app: front
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
