@@ -6,7 +6,7 @@ resource.setrlimit(resource.RLIMIT_NOFILE, (9999, 9999))
 
 
 def front(l):
-        l.client.get('/')
+    l.client.get('/')
 
 
 def back(l):
