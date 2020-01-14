@@ -326,3 +326,6 @@ CMD java -jar docker-example-1.1.3.jar
 
 ## 3.7
 [Why and when to use Kubernetes](ex3.7/kube.md)
+
+## 3.8 a)
+[Two containers running on 3 node Kubernetes cluster](projekti/Projektiraportti.pdf)
