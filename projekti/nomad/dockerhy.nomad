@@ -1,6 +1,7 @@
 job "dockerhy" {
   datacenters = ["dc1"]
   group "frontAndBack" {
+    count = 2
     task "front" {
       driver = "docker"
       artifact {
@@ -21,9 +22,7 @@ job "dockerhy" {
         memory = 256 # 256MB
         network {
           mbits = 10
-          port  "http"  {
-            static = "80"
-          }
+          port "http" {}
         }
       }
       service {
@@ -57,9 +56,7 @@ job "dockerhy" {
         memory = 256 # 256MB
         network {
           mbits = 10
-          port  "http"  {
-            static = "3000"
-          }
+          port "http" {}
         }
       }
       service {
